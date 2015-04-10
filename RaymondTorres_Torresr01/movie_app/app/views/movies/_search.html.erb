@@ -1,0 +1,41 @@
+<%= form_for @movies do |f| %>
+    <div>
+      <%=f.label :title%>
+      <%=f.text_field :title %>
+    </div>
+    <div>
+      <%=f.label :description %>
+      <%=f.text_field :description %>    
+    </div>
+    <div>
+      <%=f.label :year_released %>
+      <%=f.number_field :year_released, min: 1886, max: Date.today.year %>  
+    </div>
+    <%= f.submit%>
+<% end %>
+
+
+  <% if @movies.count > 0 %>
+    <center><b><p>Results</b></p></center>  
+     <table>
+      <thead>
+        <tr>  
+           <th>Title</th> 
+           <th>Description</th> 
+           <th>Year Released</th> 
+           <th colspan="3"></th> 
+        </tr>
+      </thead>
+
+      <tbody>
+        <% @movies.each do |movies| %>
+          <tr>
+            <td><%= movies.title %></td>
+            <td><%= movies.description %></td>
+            <td><%= movies.year_released %></td>
+          </tr>  
+        <% end %>
+      </tbody>
+    </table>
+     <br>
+  <% end %>

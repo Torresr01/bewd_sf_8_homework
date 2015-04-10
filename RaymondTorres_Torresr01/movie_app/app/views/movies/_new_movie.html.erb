@@ -1,0 +1,32 @@
+<%= form_for :movies, new_movies_path do |f| %>
+
+  <div>
+      <%= f.label :title %><br>
+      <%= f.text_field :title %>
+  </div>
+
+  <p>
+      <%= f.label :description %><br>
+      <%= f.text_area :description %>    
+  </p>
+
+  <p>
+      <%= f.label :year_released %><br>
+      <%= f.number_field :year_released, min: 1886, max: Date.today.year %>  
+  </p>
+
+  <p>
+    <%= f.submit%>
+  </p>
+
+ <% if @movie.errors.any? %>
+      <div id="errors">
+        <h2><%= pluralize(@movie.errors.count, 'error') %> prevented this post from saving</h2>
+        <ul>
+          <% @movie.errors.full_messages.each do |msg| %>
+            <li><%= msg %></li> 
+          <% end %>
+        </ul>
+      </div>
+  <% end %> 
+<% end %>
